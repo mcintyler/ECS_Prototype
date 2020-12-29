@@ -58,9 +58,13 @@ void Renderer::Render() {
 	if(m_isMinimized) return;	// Don't render if minmized
 
 	// Clear the screen
+	SDL_SetRenderDrawColor(m_sdlRenderer, 0, 0, 0, 255);
 	SDL_RenderClear(m_sdlRenderer);
 
 	// TODO: Draw all entities with sprite + transform components
+	SDL_SetRenderDrawColor(m_sdlRenderer, 255, 255, 255, 255);
+	SDL_Rect r = { 50, 50, 50, 50 };
+	SDL_RenderFillRect(m_sdlRenderer, &r);
 
 	// Swap the buffers
 	SDL_RenderPresent(m_sdlRenderer);

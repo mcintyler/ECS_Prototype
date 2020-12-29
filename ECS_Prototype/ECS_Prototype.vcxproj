@@ -148,12 +148,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ECS.cpp" />
+    <ClCompile Include="src\ECS\ECS.cpp" />
+    <ClCompile Include="src\ECS\Entity.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ECS.h" />
+    <ClInclude Include="src\DEFINITIONS.h" />
+    <ClInclude Include="src\ECS\Components.h" />
+    <ClInclude Include="src\ECS\ECS.h" />
+    <ClInclude Include="src\ECS\Entity.h" />
     <ClInclude Include="src\Renderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

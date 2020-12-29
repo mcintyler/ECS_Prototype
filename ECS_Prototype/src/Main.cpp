@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include "Renderer.h"
-#include "ECS.h"
+#include "ECS/ECS.h"
 
 bool Init();
 void Close();
@@ -22,6 +22,11 @@ int main(int argc, char* args[]) {
 	// Cache singletons
 	Renderer* renderer = Renderer::GetInstance();
 	ECS* ecs = ECS::GetInstance();
+
+	// !! REMOVE LATER !!
+	ecs->CreateEntity();
+	double counter = 0.0f;
+	bool count = true;
 
 	while(!shouldQuit) {
 		// Calculate delta time
@@ -47,6 +52,13 @@ int main(int argc, char* args[]) {
 			}
 		}
 
+		// !! REMOVE LATER !!
+		counter += deltaTime;
+		if(count && counter >= 3.0f) {
+			ecs->KillEntity(0);
+			count = false;
+		}
+
 		// Render
 		renderer->Render();
 	}
@@ -70,14 +82,6 @@ bool Init() {
 		return false;
 	}
 	printf("Renderer initialized\n");
-
-	// Init ECS
-	ECS* ecs = ECS::GetInstance();
-	if(!ecs->Init()) {
-		printf("ECS initialization failed!\n");
-		return false;
-	}
-	printf("ECS initialized\n");
 
 	return true;
 }
