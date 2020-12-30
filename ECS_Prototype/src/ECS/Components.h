@@ -1,5 +1,11 @@
 #pragma once
 
+enum ComponentID {
+	Transform,
+	Velocity,
+	DrawRect
+};
+
 namespace Components {
 	struct Transform {
 		int x;

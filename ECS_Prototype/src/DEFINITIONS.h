@@ -1,4 +1,5 @@
 #pragma once
 
 /* ECS */
-#define EntityPoolCapacity 100
+#define MaxComponents 64
+#define MinEntityPoolCapacity 100

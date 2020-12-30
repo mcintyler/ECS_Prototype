@@ -1,7 +1,7 @@
 #pragma once
-#include <vector>
 #include "Components.h"
 #include "Entity.h"
+#include <vector>
 
 class ECS {
 private:
@@ -15,6 +15,11 @@ public:
 	~ECS();
 	static ECS* GetInstance();
 
-	void CreateEntity();
-	void KillEntity(int id);
+	bool Init(int totalComponents, ...);
+	void FreeComponentStore();
+
+	Entity* CreateEntity();
+	void KillEntity(int eID);
 };
+
+// TODO: Query, get, etc. -> https://www.youtube.com/watch?v=s6TMa33niJo

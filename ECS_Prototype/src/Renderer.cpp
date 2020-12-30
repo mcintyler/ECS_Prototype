@@ -30,26 +30,26 @@ Renderer* Renderer::GetInstance() {
 bool Renderer::Init() {
 	// Init SDL_image
 	if(!IMG_Init(IMG_INIT_PNG)) {
-		printf("SDL_image initialization failed! Error: %s\n", IMG_GetError());
+		printf("[Renderer] SDL_image initialization failed! Error: %s\n", IMG_GetError());
 		return false;
 	}
-	printf("SDL_image initialized\n");
+	printf("[Renderer] SDL_image initialized\n");
 
 	// Create the SDL window
 	m_sdlWindow = SDL_CreateWindow("ECS Prototype (Tyler McIntyre)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
 	if(m_sdlWindow == NULL) {
-		printf("Window creation failed! SDL_Error: %s\n", SDL_GetError());
+		printf("[Renderer] Window creation failed! SDL_Error: %s\n", SDL_GetError());
 		return false;
 	}
-	printf("SDL Window created\n");
+	printf("[Renderer] SDL Window created\n");
 
 	// Create the SDL renderer
 	m_sdlRenderer = SDL_CreateRenderer(m_sdlWindow, -1, SDL_RENDERER_ACCELERATED);
 	if(m_sdlRenderer == NULL) {
-		printf("SDL Renderer creation failed! SDL_Error: %s\n", SDL_GetError());
+		printf("[Renderer] SDL Renderer creation failed! SDL_Error: %s\n", SDL_GetError());
 		return false;
 	}
-	printf("SDL Renderer created\n");
+	printf("[Renderer] SDL Renderer created\n");
 
 	return true;
 }

@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ECS\ComponentStore.cpp" />
     <ClCompile Include="src\ECS\ECS.cpp" />
     <ClCompile Include="src\ECS\Entity.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -155,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DEFINITIONS.h" />
-    <ClInclude Include="src\ECS\Components.h" />
+    <ClInclude Include="src\ECS\ComponentStore.h" />
     <ClInclude Include="src\ECS\ECS.h" />
     <ClInclude Include="src\ECS\Entity.h" />
     <ClInclude Include="src\Renderer.h" />

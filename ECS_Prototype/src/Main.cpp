@@ -25,6 +25,18 @@ int main(int argc, char* args[]) {
 
 	// !! REMOVE LATER !!
 	ecs->CreateEntity();
+	Entity* ent = ecs->CreateEntity();
+	Components::Transform transComp = Components::Transform();
+	transComp.x = 20;
+	transComp.y = 300;
+	ent->AddComponent(ComponentID::Transform, &transComp);
+	Components::DrawRect drawComp = Components::DrawRect();
+	drawComp.w = 50;
+	drawComp.h = 50;
+	drawComp.r = 204;
+	drawComp.g = 78;
+	drawComp.b = 189;
+	ent->AddComponent(ComponentID::DrawRect, &drawComp);
 	double counter = 0.0f;
 	bool count = true;
 
@@ -56,6 +68,11 @@ int main(int argc, char* args[]) {
 		counter += deltaTime;
 		if(count && counter >= 3.0f) {
 			ecs->KillEntity(0);
+			ent->ClearComponents();
+			Components::Transform* transform = (Components::Transform*)ent->GetComponent(ComponentID::Transform);
+			if(transform != nullptr) {
+				transform->x = 100;
+			}
 			count = false;
 		}
 
@@ -78,14 +95,25 @@ bool Init() {
 	// Init Renderer
 	Renderer* renderer = Renderer::GetInstance();
 	if(!renderer->Init()) {
-		printf("Renderer initialization failed! (Not the SDL_Renderer)\n");
+		printf("[Renderer] Initialization failed!\n");
 		return false;
 	}
-	printf("Renderer initialized\n");
+	printf("[Renderer] Initialized\n");
+
+	// Init ECS
+	ECS* ecs = ECS::GetInstance();
+	if(!ecs->Init(3, sizeof(Components::Transform),
+					sizeof(Components::Velocity),
+					sizeof(Components::DrawRect))) {
+		printf("[ECS] Initialization failed!\n");
+		return false;
+	}
+	printf("[ECS] ECS initialized\n");
 
 	return true;
 }
 
 void Close() {
+	ECS::GetInstance()->FreeComponentStore();
 	SDL_Quit();
 }
